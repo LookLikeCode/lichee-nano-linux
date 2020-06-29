@@ -21,7 +21,7 @@
 	chosen {
 		stdout-path = "serial0:115200n8";
 	};
-
+/*
 	panel: panel {
 		compatible = "qiaodian,qd43003c0-40", "simple-panel";
 		#address-cells = <1>;
@@ -39,7 +39,24 @@
 			};
 		};
 	};
+*/
+	panel: panel {
+		compatible = "lg,lb070wv8", "simple-panel";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		enable-gpios = <&pio 4 6 GPIO_ACTIVE_HIGH>;
 
+		port@0 {
+			reg = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			panel_input: endpoint@0 {
+				reg = <0>;
+				remote-endpoint = <&tcon0_out_lcd>;
+			};
+		};
+	};
 	reg_vcc3v3: vcc3v3 {
 		compatible = "regulator-fixed";
 		regulator-name = "vcc3v3";
