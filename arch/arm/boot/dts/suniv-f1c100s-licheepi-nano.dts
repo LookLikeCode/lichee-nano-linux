@@ -63,6 +63,15 @@
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 	};
+
+	leds {
+    		compatible = "gpio-leds";
+			green_led {
+			label = "licheepi:green:usr";
+			gpios = <&pio 4 10 GPIO_ACTIVE_HIGH>; /* PE10 */
+			default-state = "on";
+		};
+	};
 };
 
 &de {
@@ -121,7 +130,7 @@
     flash: xt25f128b@0 {
         #address-cells = <1>;
         #size-cells = <1>;
-        compatible = "winbond,xt25f128b", "jedec,spi-nor";
+        compatible = "winbond,xt25f128b,w25q128", "jedec,spi-nor";
         reg = <0>;
         spi-max-frequency = <50000000>;
         partitions {
